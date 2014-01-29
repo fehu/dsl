@@ -5,7 +5,6 @@ import org.sbtidea.SbtIdeaPlugin._
 object  Build extends sbt.Build {
 
   val ScalaVersion = "2.10.3"
-  val Version = "1.0"
 
   import Dependencies._
 
