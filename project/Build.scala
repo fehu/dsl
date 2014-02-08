@@ -39,7 +39,7 @@ object  Build extends sbt.Build {
     id = "swing",
     base = file("swing"),
     settings = buildSettings ++ Seq(
-      version := "1.0",
+      version := "1.1",
       libraryDependencies ++= Seq(scalaSwing, feh.util)
     )
   )
