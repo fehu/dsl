@@ -2,18 +2,15 @@ import sbt._
 import Keys._
 import org.sbtidea.SbtIdeaPlugin._
 
-object  Build extends sbt.Build {
+object Build extends sbt.Build {
 
   val ScalaVersion = "2.10.3"
 
-  import Dependencies._
-
-  val buildSettings = Defaults.defaultSettings ++ Seq (
+  val commonBuildSettings = Defaults.defaultSettings ++ Seq (
     organization  := "feh.dsl",
-    scalaVersion  := ScalaVersion,
 //    scalacOptions ++= Seq("-explaintypes"),
 //    scalacOptions ++= Seq("-deprecation"),
-    scalacOptions in (Compile, doc) ++= Seq("-diagrams", "-diagrams-debug")
+    scalacOptions in (Compile, doc) ++= Seq("-diagrams")
   )
 
   // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
@@ -38,18 +35,12 @@ object  Build extends sbt.Build {
   lazy val swing = Project(
     id = "swing",
     base = file("swing"),
-    settings = buildSettings ++ Seq(
-      version := "1.1",
-      libraryDependencies ++= Seq(scalaSwing, feh.util)
-    )
+    settings = commonBuildSettings
   )
 
   lazy val graphviz = Project(
     id = "graphviz",
     base = file("graphviz"),
-    settings = buildSettings ++ Seq(
-      version := "0.1",
-      libraryDependencies += feh.util
-    )
+    settings = commonBuildSettings
   )
 }
