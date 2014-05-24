@@ -4,11 +4,10 @@ import org.sbtidea.SbtIdeaPlugin._
 
 object Build extends sbt.Build {
 
-  val ScalaVersion = "2.10.3"
-
   val commonBuildSettings = Defaults.defaultSettings ++ Seq (
     organization  := "feh.dsl",
-//    scalacOptions ++= Seq("-explaintypes"),
+    crossScalaVersions := Seq("2.10.3", "2.11.1"),
+      //    scalacOptions ++= Seq("-explaintypes"),
 //    scalacOptions ++= Seq("-deprecation"),
     scalacOptions in (Compile, doc) ++= Seq("-diagrams")
   )
@@ -16,11 +15,11 @@ object Build extends sbt.Build {
   // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //
 
   object Dependencies{
-    lazy val scalaSwing = "org.scala-lang" % "scala-swing" % ScalaVersion
-    lazy val reflectApi = "org.scala-lang" % "scala-reflect" % ScalaVersion
+    def scalaSwing(version: String) = "org.scala-lang" % "scala-swing" % version
+    def reflectApi(version: String) = "org.scala-lang" % "scala-reflect" % version
 
     object feh{
-      lazy val util = "feh" %% "util" % "1.0.1"
+      lazy val util = "feh" %% "util" % "1.0.2"
     }
   }
 
