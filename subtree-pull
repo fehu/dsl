@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ $2 ]; then branch=$2
+else branch="master"
+fi
+
+git subtree pull --prefix=$1 $1 $branch
